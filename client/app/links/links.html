@@ -1,7 +1,20 @@
 <div id='container'>
   <!-- Your html here -->
   <h2>Links on Links</h1>
+  <div class="navigation">
+    <ul>
+      <li><a href="#/shorten">Shorten</a></li>
+      <li><a href="#/links">Links</a></li>
+      <li><a href="#/signout">Logout</a></li>
+    </ul>
+  </div>
+  <br><br>
+  <input ng-model="searchText" placeholder="Search Links">
   <ul>
-    <li ng-repeat='link in data.links'>{{ link.base_url }}/{{ link.code }}</li>
+    <li class='link' ng-repeat='link in data.links | orderBy: "-visits" | filter:searchText' ng-click='site(link)'>
+      <a href={{'/api/links/'+link.code}}>
+        <img src='assets/redirect_icon.png' />  {{link.base_url}}/{{link.code}}  <span class="original">{{link.url}}</span><span class="visits">Visits: <span class="count">{{link.visits}}</span></span>
+      </a>
+    </li>
   </ul>
 </div>
