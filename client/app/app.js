@@ -33,8 +33,7 @@ angular.module('shortly', [
       controller: 'AuthController'
     })
     .otherwise({
-      templateUrl: 'app/links/links.html',
-      controller: 'LinksController'
+      redirectTo:"/links"
     })
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
